@@ -19,14 +19,24 @@
             font-size: 20px;
             margin-top: 10px;
         }
+        .choice img {
+            width: 100px;
+            height: 100px;
+        }
     </style>
 </head>
 <body>
     <h1>Rock Paper Scissors</h1>
     <div>
-        <span class="choice" onclick="playGame('rock')">Rock</span>
-        <span class="choice" onclick="playGame('paper')">Paper</span>
-        <span class="choice" onclick="playGame('scissors')">Scissors</span>
+        <span class="choice" onclick="playGame('rock')">
+            <img src="rock.png" alt="Rock">
+        </span>
+        <span class="choice" onclick="playGame('paper')">
+            <img src="paper.png" alt="Paper">
+        </span>
+        <span class="choice" onclick="playGame('scissors')">
+            <img src="scissors.png" alt="Scissors">
+        </span>
     </div>
     <p id="result" class="result"></p>
     <p id="score" class="score">Score: 0</p>
