@@ -35,15 +35,24 @@ function playGame(playerChoice) {
     const playerHand = document.getElementById('player-hand');
     const computerHand = document.getElementById('computer-hand');
 
-    // Update hands images
+    
     playerHand.src = `${playerChoice}.png`;
-    computerHand.src = `${computerChoice}.png`;
 
     // Add animations
     playerHand.style.animation = "shakePlayer 2s ease";
     computerHand.style.animation = "shakeComputer 2s ease";
 
+    
+    const choices = ['rock', 'paper', 'scissors'];
+    let animationInterval = setInterval(() => {
+        const randomChoice = choices[Math.floor(Math.random() * choices.length)];
+        computerHand.src = `${randomChoice}.png`;
+    }, 100);
+
     setTimeout(() => {
+        clearInterval(animationInterval);
+        computerHand.src = `${computerChoice}.png`;
+
         playRound(playerChoice, computerChoice);
         playerHand.style.animation = "";
         computerHand.style.animation = "";
