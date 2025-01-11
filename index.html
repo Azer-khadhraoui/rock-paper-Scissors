@@ -5,41 +5,92 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
     <style>
-        .choice {
-            font-size: 20px;
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            margin-top: 50px;
+        }
+        .choices, .hands {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .choice, .hand {
             margin: 10px;
             padding: 10px;
             cursor: pointer;
+            transition: transform 0.2s;
         }
-        .result {
+        .choice:hover {
+            transform: scale(1.1);
+        }
+        .choice img, .hand img {
+            width: 100px;
+            height: 100px;
+        }
+        .result, .score {
             font-size: 24px;
             margin-top: 20px;
         }
-        .score {
-            font-size: 20px;
-            margin-top: 10px;
+        .result {
+            color: #333;
         }
-        .choice img {
-            width: 100px;
-            height: 100px;
+        .score {
+            color: #007BFF;
+        }
+        .fadeOut {
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        .fadeIn {
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        @keyframes shakePlayer {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-10px); }
+            40%, 80% { transform: translateX(10px); }
+        }
+        @keyframes shakeComputer {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(10px); }
+            40%, 80% { transform: translateX(-10px); }
         }
     </style>
 </head>
 <body>
     <h1>Rock Paper Scissors</h1>
-    <div>
-        <span class="choice" onclick="playGame('rock')">
-            <img src="rock.png" alt="Rock">
-        </span>
-        <span class="choice" onclick="playGame('paper')">
-            <img src="paper.png" alt="Paper">
-        </span>
-        <span class="choice" onclick="playGame('scissors')">
-            <img src="scissors.png" alt="Scissors">
-        </span>
+    <div class="intro">
+        <button>Start Game</button>
     </div>
-    <p id="result" class="result"></p>
-    <p id="score" class="score">Score: 0</p>
+    <div class="match fadeOut">
+        <div class="choices">
+            <div class="choice" onclick="playGame('rock')">
+                <img src="rock.png" alt="Rock">
+            </div>
+            <div class="choice" onclick="playGame('paper')">
+                <img src="paper.png" alt="Paper">
+            </div>
+            <div class="choice" onclick="playGame('scissors')">
+                <img src="scissors.png" alt="Scissors">
+            </div>
+        </div>
+        <div class="hands">
+            <div class="hand">
+                <img id="player-hand" src="rock.png" alt="Player Hand">
+            </div>
+            <div class="hand">
+                <img id="computer-hand" src="rock.png" alt="Computer Hand">
+            </div>
+        </div>
+        <p id="result" class="result"></p>
+        <p id="score" class="score">Score: 0</p>
+    </div>
 
     <script src="game.js"></script>
 </body>

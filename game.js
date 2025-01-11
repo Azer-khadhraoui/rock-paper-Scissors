@@ -1,24 +1,65 @@
-let score = 0;
+let playerScore = 0;
+let computerScore = 0;
 
-function playGame(userChoice) {
+function getComputerChoice() {
     const choices = ['rock', 'paper', 'scissors'];
-    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-
-    function determineWinner(userChoice, computerChoice) {
-        if (userChoice === computerChoice) {
-            return "It's a tie!";
-        } else if ((userChoice === 'rock' && computerChoice === 'scissors') ||
-                   (userChoice === 'scissors' && computerChoice === 'paper') ||
-                   (userChoice === 'paper' && computerChoice === 'rock')) {
-            score++;
-            return "You win!";
-        } else {
-            score--;
-            return "You lose!";
-        }
-    }
-
-    const result = determineWinner(userChoice, computerChoice);
-    document.getElementById('result').innerText = `You chose: ${userChoice}, Computer chose: ${computerChoice}. ${result}`;
-    document.getElementById('score').innerText = `Score: ${score}`;
+    const randomIndex = Math.floor(Math.random() * choices.length);
+    return choices[randomIndex];
 }
+
+function updateScore() {
+    const playerScoreElement = document.querySelector('.score');
+    playerScoreElement.textContent = `Score: ${playerScore} - ${computerScore}`;
+}
+
+function playRound(playerChoice, computerChoice) {
+    const resultElement = document.getElementById('result');
+    if (playerChoice === computerChoice) {
+        resultElement.textContent = "It's a tie!";
+    } else if (
+        (playerChoice === 'rock' && computerChoice === 'scissors') ||
+        (playerChoice === 'scissors' && computerChoice === 'paper') ||
+        (playerChoice === 'paper' && computerChoice === 'rock')
+    ) {
+        playerScore++;
+        resultElement.textContent = "You win!";
+    } else {
+        computerScore++;
+        resultElement.textContent = "Computer wins!";
+    }
+    updateScore();
+}
+
+function playGame(playerChoice) {
+    const computerChoice = getComputerChoice();
+    const playerHand = document.getElementById('player-hand');
+    const computerHand = document.getElementById('computer-hand');
+
+    // Update hands images
+    playerHand.src = `${playerChoice}.png`;
+    computerHand.src = `${computerChoice}.png`;
+
+    // Add animations
+    playerHand.style.animation = "shakePlayer 2s ease";
+    computerHand.style.animation = "shakeComputer 2s ease";
+
+    setTimeout(() => {
+        playRound(playerChoice, computerChoice);
+        playerHand.style.animation = "";
+        computerHand.style.animation = "";
+    }, 2000);
+}
+
+function startGame() {
+    const playBtn = document.querySelector('.intro button');
+    const introScreen = document.querySelector('.intro');
+    const match = document.querySelector('.match');
+
+    playBtn.addEventListener('click', () => {
+        introScreen.classList.add('fadeOut');
+        match.classList.remove('fadeOut');
+        match.classList.add('fadeIn');
+    });
+}
+
+startGame();
