@@ -1,4 +1,4 @@
-Rock, Paper, Scissors Game
+## Rock, Paper, Scissors Game
 
 
 
@@ -17,3 +17,14 @@ Features
 
 
 *Keeps track of the player's and computer's score.
+
+
+## Live Demo
+
+You can check out the live demo of this project at [Live Demo](https://azer-khadhraoui.github.io/rock-paper-Scissors).
+
+## The Game
+
+![rps1](https://github.com/user-attachments/assets/5b9a8edf-e8d6-423d-83ca-e73ce01d92dc)
+
+![rps2](https://github.com/user-attachments/assets/cfcc7f99-47e6-4f8c-b437-4ee9464c20ac)
